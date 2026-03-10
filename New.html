@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#ffccd5">
     <title>Happy Birthday Chinnu (Udayasri)!</title>
     <!-- Importing Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -21,77 +22,103 @@
             padding: 0;
             background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
             font-family: 'Poppins', sans-serif;
-            height: 100vh;
+            height: 100dvh; /* Use dvh for mobile address bar compatibility */
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
+            touch-action: manipulation;
         }
 
         .container {
             position: relative;
             z-index: 10;
-            padding: 2rem;
-            max-width: 600px;
+            padding: 2rem 1.5rem;
+            width: 90%;
+            max-width: 450px;
             background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            animation: fadeIn 2s ease-out;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            animation: fadeIn 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin: 10px;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: scale(0.9) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .title {
             font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
+            font-size: clamp(3rem, 12vw, 4.5rem); /* Responsive font size */
             color: var(--primary);
             margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
         }
 
         .name-wrapper {
-            margin: 1rem 0;
-        }
-
-        .nickname {
-            font-size: 2.5rem;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .real-name {
-            font-size: 1.2rem;
-            color: var(--secondary);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .message {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: var(--text-dark);
             margin: 1.5rem 0;
         }
 
+        .nickname {
+            font-size: clamp(2rem, 8vw, 2.8rem);
+            color: var(--text-dark);
+            font-weight: 700;
+            display: block;
+        }
+
+        .real-name {
+            font-size: 1rem;
+            color: var(--secondary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .message {
+            font-size: clamp(0.95rem, 4vw, 1.1rem);
+            line-height: 1.7;
+            color: var(--text-dark);
+            margin: 1.5rem 0;
+            padding: 0 5px;
+        }
+
+        .tap-hint {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            margin-top: 1rem;
+            opacity: 0.8;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
         .music-btn {
-            background: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 14px 30px;
             border-radius: 50px;
             font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.2);
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .music-btn:hover {
@@ -146,19 +173,19 @@
     <div class="container">
         <h1 class="title">Happy Birthday!</h1>
         <div class="name-wrapper">
-            <div class="nickname">Chinnu Akka🎂</div>
-            <div class="real-name">Udayasri</div>
+            <span class="nickname">Chinnu Akka 🎂</span>
+            <span class="real-name">Udayasri</span>
         </div>
         <p class="message">
             To the most Beautiful, Akka! ❤️<br>
             You're not just my sister, but my best friend and guide. 🌟<br>
             Wishing you a year filled with love, laughter, and endless happiness. 🎂<br>
-            May all your dreams come true, Chinnu! You deserve the best in life. 🌈<br>
-            Keep smiling and shining always! ✨
+            May all your dreams come true, Chinnu! You deserve the best in life. 🌈
         </p>
         <button class="music-btn" onclick="toggleMusic()">
             <span id="musicIcon">🎵</span> Play Music
         </button>
+        <div class="tap-hint" id="tapHint">Tap anywhere to start the magic! ✨</div>
     </div>
 
     <!-- Background Music (Royalty Free Birthday Music Placeholder) -->
@@ -171,6 +198,7 @@
         const music = document.getElementById('bgMusic');
         const icon = document.getElementById('musicIcon');
         const btnText = document.querySelector('.music-btn');
+        const tapHint = document.getElementById('tapHint');
 
         // Attempt autoplay on first interaction (required by modern browsers)
         document.body.addEventListener('click', function() {
@@ -188,6 +216,7 @@
                 music.play();
                 icon.innerText = '⏸️';
                 btnText.innerHTML = '⏸️ Pause Music';
+                tapHint.style.display = 'none'; // Hide hint once started
                 startCelebration();
             }
             isPlaying = !isPlaying;
