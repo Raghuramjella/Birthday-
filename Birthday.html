@@ -1,101 +1,247 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Happy Birthday Udayasri</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Chinnu (Udayasri)!</title>
+    <!-- Importing Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ff85a1;
+            --accent: #ffb3c1;
+            --text-dark: #590d22;
+        }
 
-<style>
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:black;
-    font-family:Arial;
-    overflow:hidden;
-    color:white;
-    text-align:center;
-}
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
 
-h1{
-    font-size:60px;
-    animation: glow 2s infinite alternate;
-}
+        .container {
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: fadeIn 2s ease-out;
+        }
 
-p{
-    font-size:24px;
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-@keyframes glow{
-    from{ text-shadow:0 0 10px #fff;}
-    to{ text-shadow:0 0 30px #ff00ff;}
-}
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--primary);
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
 
-/* balloons */
+        .name-wrapper {
+            margin: 1rem 0;
+        }
 
-.balloon{
-    position:absolute;
-    bottom:-120px;
-    width:50px;
-    height:70px;
-    border-radius:50%;
-    animation: float 7s infinite;
-}
+        .nickname {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
 
-@keyframes float{
-    from{transform:translateY(0);}
-    to{transform:translateY(-120vh);}
-}
+        .real-name {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
 
-/* fireworks */
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin: 1.5rem 0;
+        }
 
-.firework{
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:white;
-    border-radius:50%;
-    animation: explode 1.5s infinite;
-}
+        .music-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-@keyframes explode{
-0%{transform:scale(0);}
-50%{transform:scale(6);opacity:1;}
-100%{transform:scale(10);opacity:0;}
-}
-</style>
+        .music-btn:hover {
+            transform: scale(1.05);
+            background: var(--secondary);
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: var(--accent);
+            pointer-events: none;
+            z-index: 1;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 50px;
+            height: 65px;
+            background: var(--primary);
+            border-radius: 50%;
+            z-index: 5;
+            animation: fly 10s infinite linear;
+        }
+
+        @keyframes fly {
+            0% { bottom: -100px; transform: translateX(0); }
+            100% { bottom: 110%; transform: translateX(20px); }
+        }
+
+        canvas#confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 20;
+        }
+    </style>
 </head>
-
 <body>
+    <canvas id="confetti"></canvas>
 
-<div>
-<h1>🎉 Happy Birthday Udayasri 🎂</h1>
-<p>May your day be filled with happiness, smiles and success!</p>
-</div>
+    <div class="container">
+        <h1 class="title">Happy Birthday!</h1>
+        <div class="name-wrapper">
+            <div class="nickname">Chinnu Akka🎂</div>
+            <div class="real-name">Udayasri</div>
+        </div>
+        <p class="message">
+            To the most Beautiful, Akka! ❤️<br>
+            You're not just my sister, but my best friend and guide. 🌟<br>
+            Wishing you a year filled with love, laughter, and endless happiness. 🎂<br>
+            May all your dreams come true, Chinnu! You deserve the best in life. 🌈<br>
+            Keep smiling and shining always! ✨
+        </p>
+        <button class="music-btn" onclick="toggleMusic()">
+            <span id="musicIcon">🎵</span> Play Music
+        </button>
+    </div>
 
-<!-- Balloons -->
+    <!-- Background Music (Royalty Free Birthday Music Placeholder) -->
+    <audio id="bgMusic" loop autoplay>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
 
-<div class="balloon" style="left:10%;background:red;"></div>
-<div class="balloon" style="left:30%;background:blue;animation-delay:1s;"></div>
-<div class="balloon" style="left:50%;background:green;animation-delay:2s;"></div>
-<div class="balloon" style="left:70%;background:yellow;animation-delay:3s;"></div>
-<div class="balloon" style="left:90%;background:pink;animation-delay:4s;"></div>
+    <script>
+        let isPlaying = false;
+        const music = document.getElementById('bgMusic');
+        const icon = document.getElementById('musicIcon');
+        const btnText = document.querySelector('.music-btn');
 
-<!-- Fireworks -->
+        // Attempt autoplay on first interaction (required by modern browsers)
+        document.body.addEventListener('click', function() {
+            if (!isPlaying) {
+                toggleMusic();
+            }
+        }, { once: true });
 
-<div class="firework" style="top:20%;left:20%;"></div>
-<div class="firework" style="top:30%;left:70%;animation-delay:0.5s;"></div>
-<div class="firework" style="top:50%;left:40%;animation-delay:1s;"></div>
-<div class="firework" style="top:70%;left:60%;animation-delay:1.5s;"></div>
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                icon.innerText = '🎵';
+                btnText.innerHTML = '🎵 Play Music';
+            } else {
+                music.play();
+                icon.innerText = '⏸️';
+                btnText.innerHTML = '⏸️ Pause Music';
+                startCelebration();
+            }
+            isPlaying = !isPlaying;
+        }
 
-<!-- Birthday Music -->
+        function startCelebration() {
+            const end = Date.now() + (3 * 1000);
+            const colors = ['#ff4d6d', '#ff85a1', '#ffb3c1', '#ffffff'];
 
-<audio autoplay loop>
-<source src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid" type="audio/midi">
-</audio>
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
 
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        // Automatic confetti on load (without sound)
+        window.onload = () => {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff4d6d', '#ff85a1', '#ffb3c1']
+            });
+            createBalloons();
+        };
+
+        function createBalloons() {
+            const colors = ['#ff4d6d', '#ff85a1', '#ffb3c1', '#f08080', '#e9967a'];
+            for(let i = 0; i < 15; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = Math.random() * 100 + 'vw';
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.animationDelay = Math.random() * 5 + 's';
+                balloon.style.opacity = '0.7';
+                document.body.appendChild(balloon);
+            }
+        }
+    </script>
 </body>
 </html>
-
